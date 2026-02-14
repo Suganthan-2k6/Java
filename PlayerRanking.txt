@@ -1,0 +1,31 @@
+public class PlayerRanking {
+
+    public static void main(String[] args) {
+
+        int[] ranked = {100, 100, 50, 40, 40, 20, 10};
+        int[] player = {5, 25, 50, 120};
+
+        int[] uniqueRanks = new int[ranked.length];
+        int size = 0;
+
+        // Remove duplicate scores from ranked array
+        for (int i = 0; i < ranked.length; i++) {
+            if (i == 0 || ranked[i] != ranked[i - 1]) {
+                uniqueRanks[size++] = ranked[i];
+            }
+        }
+
+        // Determine rank for each player score
+        for (int p : player) {
+            int rank = 1;
+            for (int i = 0; i < size; i++) {
+                if (p < uniqueRanks[i]) {
+                    rank++;
+                } else {
+                    break;
+                }
+            }
+            System.out.println(rank);
+        }
+    }
+}
